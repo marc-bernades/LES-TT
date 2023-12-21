@@ -21,6 +21,8 @@ The proper execution of these scripts require the download of HPCFS Solver as it
 
 Multiple DNS snapshots are also provided to performed the filtered DNS analysis. Instead, the data container which contains the filtered data based on the average of these various datasets is also provided.
 
+The MATLAB directory requires a Data and Figures folder.
+
 1) DNS_filter.m
 
 This script (i) filters the DNS snapshots based on the filter type and filter width selected and (ii) performs a ensemble-average based on multiple DNS snapshots.
