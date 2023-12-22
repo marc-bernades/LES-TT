@@ -134,8 +134,8 @@ Tau_kk_DNS_filt = zeros(size(x));
 Tau_xx_DNS_filt = Tau_xz; Tau_xy_DNS_filt = Tau_xy; Tau_xz_DNS_filt = Tau_xz;
 Tau_yy_DNS_filt = Tau_yy; Tau_yz_DNS_filt = Tau_yz; Tau_zz_DNS_filt = Tau_zz;
 
-for jj = idx_filt:num_points_x-(idx_filt-1)
-    for ii = idx_filt:num_points_x-(idx_filt-1) % Only filtered points from y_outer
+for ii = idx_filt:num_points_x-(idx_filt-1)
+    for jj = idx_filt:num_points_y-(idx_filt-1) % Only filtered points from y_outer
         for kk = idx_filt:num_points_z-(idx_filt-1)
 
             tau_filt_ij = [Tau_xx(ii,jj,kk), Tau_xy(ii,jj,kk), Tau_xz(ii,jj,kk);
@@ -305,8 +305,8 @@ Omega_ww_filt_favre = (dw_z_filt_favre./dz - dw_z_filt_favre./dz);
 ve_AMR = zeros(size(x));
 
 % Decomposition point by point
-for jj = idx_filt:num_points_x-(idx_filt-1)
-    for ii = idx_filt:num_points_x-(idx_filt-1) % Only filtered points from y_outer
+for ii = idx_filt:num_points_x-(idx_filt-1)
+    for jj = idx_filt:num_points_y-(idx_filt-1) % Only filtered points from y_outer
         for kk = idx_filt:num_points_z-(idx_filt-1)
 
             S_ij = [S_uu_filt_favre(ii,jj,kk), S_uv_filt_favre(ii,jj,kk), S_uw_filt_favre(ii,jj,kk);
@@ -370,8 +370,8 @@ D_WALE         = zeros(size(dx));
 C_s_wale_2_num = zeros(size(dx));
 C_s_wale_2_den = zeros(size(dx));
 
-for jj = idx_filt:num_points_x-(idx_filt-1)
-    for ii = idx_filt:num_points_x-(idx_filt-1) % Only filtered points from y_outer
+for ii = idx_filt:num_points_x-(idx_filt-1)
+    for jj = idx_filt:num_points_y-(idx_filt-1) % Only filtered points from y_outer
         for kk = idx_filt:num_points_z-(idx_filt-1)
 
             S_ij = 0.5*[S_uu_filt_favre(ii,jj,kk) S_uv_filt_favre(ii,jj,kk) S_uw_filt_favre(ii,jj,kk);
@@ -384,7 +384,7 @@ for jj = idx_filt:num_points_x-(idx_filt-1)
 
             A_ji = A_ij';
 
-            S_ij_d = 0.5*(A_ij*A_ij + A_ji*A_ji - 2/3*trace(A_ij*A_ij)*eye(3));
+            S_ij_d = 0.5*((A_ij*A_ij + A_ji*A_ji) - 2/3*trace(A_ij*A_ij)*eye(3));
 
             % Inner product S_ij_d S_ij_d
             S_ij_d_2 = sum(sum(S_ij_d.*S_ij_d)); 
