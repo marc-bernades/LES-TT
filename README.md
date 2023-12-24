@@ -19,7 +19,7 @@ The filtered data can be evaluated in terms of:
 
 The proper execution of these scripts require the download of HPCFS Solver as it uses part of common utilities, the Peng-Robinson equation of state and high-pressure coefficient models, convective and viscous terms functionalities.
 
-Multiple DNS snapshots are also provided to performed the filtered DNS analysis. Instead, the data container which contains the filtered data based on the average of these various datasets is also provided.
+Multiple DNS snapshots are also provided to performed the filtered DNS analysis. Instead, the data container which contains the filtered data based on the average of these various datasets is also provided. However, due to the limitation of large files in GitHub, the data is stored locally on clusters at Universitat Politècnica de Catalunya · BarcelonaTech (UPC), and will be provided upon making proper arrangements with the requesters.
 
 The MATLAB directory requires a Data and Figures folder.
 
