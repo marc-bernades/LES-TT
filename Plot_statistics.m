@@ -4,7 +4,9 @@
 
 %% Load DataSet
 Filter_type = 'CDLF_Box';
-name_file_out  = strcat('Data/', 'LP_', Filter_type);
+name_file_out  = strcat('Data/', 'HP_fi_2_10_single', Filter_type);
+% name_file_out  = strcat('Data/', 'LP_', Filter_type);
+
 DATA           = readtable(strcat(name_file_out,'.csv'));
 
 % Dimensions
@@ -58,12 +60,15 @@ set(h,'xscale','log')
 semilogx(DATA.y_plus_bw(2:max_y_index_bw),DATA.u_plus_bw(2:max_y_index_bw),'o','LineWidth',1.5,'MarkerSize',8,'color',[0 0.4470 0.7410]); hold on;grid on; box on;
 semilogx(DATA.y_plus_bw(2:max_y_index_bw),DATA.u_plus_bw_filt2xDelta(2:max_y_index_bw),'s','LineWidth',1.5,'MarkerSize',8,'color',[0.6350 0.0780 0.1840])
 semilogx(DATA.y_plus_bw(2:max_y_index_bw),DATA.u_plus_bw_filt4xDelta(2:max_y_index_bw),'x','LineWidth',1.5,'MarkerSize',8,'color',[0.4660 0.6740 0.1880])
-ylim([0 15])
-% xticklabels([10^-1 10^0 10^1 10^2])
+% ylim([0 15])
+xticks([10^-1 10^0 10^1 10^2])
 xlabel('${y^+}$','interpreter','latex')
 ylabel('${u^+}$','interpreter','latex')
-legend([{'DNS'},{strcat('${{\overline{\Delta}}/\Delta}$',' = ', num2str(2))},{strcat('${{\overline{\Delta}}/\Delta}$',' = ', num2str(4))}],'interpreter','latex','location','best')
-
+legend([{'DNS'},{strcat('${{\overline{\Delta}}/\Delta}$',' = ','$\thinspace$', num2str(2))},{strcat('${{\overline{\Delta}}/\Delta}$',' = ', '$\thinspace$',num2str(4))}],'interpreter','latex','location','best')
+legend('Location','best','box','off')
+set(gca,'linewidth',2)
+set(gca,'fontsize',16)
+exportgraphics(gca,strcat('Figures/uplus_vs_yplus_bw_', name_file_out(6:end), '.jpeg'),'Resolution',300)
 
 % 1st order statistics (velocity) high-pressure (DNS, filter 2x and 4x)
 figure; hold on; grid on; box on;
@@ -73,11 +78,15 @@ set(h,'xscale','log')
 semilogx(DATA.y_plus_tw(2:max_y_index_tw),DATA.u_plus_tw(2:max_y_index_tw),'o','LineWidth',1.5,'MarkerSize',8,'color',[0 0.4470 0.7410]); hold on;grid on; box on;
 semilogx(DATA.y_plus_tw(2:max_y_index_tw),DATA.u_plus_tw_filt2xDelta(2:max_y_index_tw),'s','LineWidth',1.5,'MarkerSize',8,'color',[0.6350 0.0780 0.1840])
 semilogx(DATA.y_plus_tw(2:max_y_index_tw),DATA.u_plus_tw_filt4xDelta(2:max_y_index_tw),'x','LineWidth',1.5,'MarkerSize',8,'color',[0.4660 0.6740 0.1880])
-ylim([0 15])
-% xticklabels([10^-1 10^0 10^1 10^2])
-xlabel('${y^+}$','interpreter','latex')
-ylabel('${u^+}$','interpreter','latex')
-legend([{'DNS'},{strcat('${{\overline{\Delta}}/\Delta}$',' = ', num2str(2))},{strcat('${{\overline{\Delta}}/\Delta}$',' = ', num2str(4))}],'interpreter','latex','location','best')
+% ylim([0 20])
+xticks([10^-1 10^0 10^1 10^2])
+xlabel('${y^+}$','interpreter','latex','fontsize',16)
+ylabel('${u^+}$','interpreter','latex','fontsize',16)
+legend([{'DNS'},{strcat('${{\overline{\Delta}}/\Delta}$',' = ', '$\thinspace$', num2str(2))},{strcat('${{\overline{\Delta}}/\Delta}$',' = ','$\thinspace$', num2str(4))}],'interpreter','latex','location','best')
+legend('Location','best','box','off','fontsize',16)
+set(gca,'linewidth',2)
+set(gca,'fontsize',16)
+exportgraphics(gca,strcat('Figures/uplus_vs_yplus_tw_', name_file_out(6:end), '.jpeg'),'Resolution',300)
 
 
 %% u/u_b vs. y/delta

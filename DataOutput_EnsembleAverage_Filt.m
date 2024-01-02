@@ -33,5 +33,5 @@ Data_output      = [Data_output Data_filt_append];
 end
 
 % Convert cell to a table and use first row as variable names
-save(["Data/" name_file_out_filt_dataset ".mat"], 'Data_output', '-v7.3');
+save(["Data/" + name_file_out_filt_dataset + ".mat"], 'Data_output', '-v7.3');
 

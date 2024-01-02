@@ -155,35 +155,35 @@ for yy = 1:length(y_outer_vec)
 %     saveas(gca,strcat('Figures/PDF_Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'jpeg')
 %     saveas(gca,strcat('Figures/PDF_Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'png')
 
-    exportgraphics(gca,strcat('Figures/PDF_Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
+%     exportgraphics(gca,strcat('Figures/PDF_Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
     exportgraphics(gca,strcat('Figures/PDF_Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.jpeg'),'Resolution',300)
 
 
 
-    %% Barycentric map based on magnitude (colormap)
-    f = figure;
-    plot([x2c(1) x1c(1)],[x2c(2) x1c(2)],'k')
-    hold on
-    plot([x3c(1) x1c(1)],[x3c(2) x1c(2)],'k')
-    plot([x3c(1) x2c(1)],[x3c(2) x2c(2)],'k')
-    scatter(bar_x_map,bar_y_map,[], bar_kk_map/mean(bar_kk_map), 'filled')
-    colorbar; colormap(jet) % flipud
-
-    cbh = findall(f, 'Type', 'ColorBar');
-    cTH = get(cbh,'Title');
-    set(cTH,'String',['$','\tau_{kk}','/','\langle \tau_{kk} \rangle','$'],'Interpreter','latex','fontsize',16);
-    set(gca,'linewidth',1)
-    % set(gca,'XTick',[0 1])
-    % set(gca,'xticklabel',{'{x_1}_c','{x_2}_c', 'interpreter', 'latex'})
-    % set(gca,'YTick',[])
-    box off; axis off;
-    text(x1c(1)-0.05, x1c(2)-0.02, '${x_1}_c$', 'interpreter', 'latex','fontsize',16)
-    text(x2c(1), x2c(2)-0.02, '${x_2}_c$', 'interpreter', 'latex','fontsize',16)
-    text(x3c(1)-0.02, x3c(2)+0.02, '${x_3}_c$', 'interpreter', 'latex','fontsize',16)
-%     saveas(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'jpeg')
-%     saveas(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'png')
-    exportgraphics(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
-    exportgraphics(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.jpeg'),'Resolution',300)
+%     %% Barycentric map based on magnitude (colormap)
+%     f = figure;
+%     plot([x2c(1) x1c(1)],[x2c(2) x1c(2)],'k')
+%     hold on
+%     plot([x3c(1) x1c(1)],[x3c(2) x1c(2)],'k')
+%     plot([x3c(1) x2c(1)],[x3c(2) x2c(2)],'k')
+%     scatter(bar_x_map,bar_y_map,[], bar_kk_map/mean(bar_kk_map), 'filled')
+%     colorbar; colormap(jet) % flipud
+% 
+%     cbh = findall(f, 'Type', 'ColorBar');
+%     cTH = get(cbh,'Title');
+%     set(cTH,'String',['$','\tau_{kk}','/','\langle \tau_{kk} \rangle','$'],'Interpreter','latex','fontsize',16);
+%     set(gca,'linewidth',1)
+%     % set(gca,'XTick',[0 1])
+%     % set(gca,'xticklabel',{'{x_1}_c','{x_2}_c', 'interpreter', 'latex'})
+%     % set(gca,'YTick',[])
+%     box off; axis off;
+%     text(x1c(1)-0.05, x1c(2)-0.02, '${x_1}_c$', 'interpreter', 'latex','fontsize',16)
+%     text(x2c(1), x2c(2)-0.02, '${x_2}_c$', 'interpreter', 'latex','fontsize',16)
+%     text(x3c(1)-0.02, x3c(2)+0.02, '${x_3}_c$', 'interpreter', 'latex','fontsize',16)
+% %     saveas(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'jpeg')
+% %     saveas(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'png')
+% %     exportgraphics(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
+%     exportgraphics(gca,strcat('Figures/Barycentric_map_DNS_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.jpeg'),'Resolution',300)
 
 
     %% PDF on Polar map (eigen vectors)
@@ -197,7 +197,7 @@ for yy = 1:length(y_outer_vec)
     legend([{'$\phi_1$'},{'$\phi_2$'},{'$\phi_3$'}],'interpreter','latex','location','southwest','box','off')
     set(gca,'linewidth',1.5)
     set(gca,'fontsize',16)
-    exportgraphics(gca,strcat('Figures/Polar_map_fi_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
+%     exportgraphics(gca,strcat('Figures/Polar_map_fi_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
     exportgraphics(gca,strcat('Figures/Polar_map_fi_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.jpeg'),'Resolution',300)
 
 %     saveas(gca,strcat('Figures/Polar_map_fi_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'png')
@@ -216,7 +216,7 @@ for yy = 1:length(y_outer_vec)
     set(gca,'fontsize',16)
 %     saveas(gca,strcat('Figures/Polar_map_theta_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'png')
 %     saveas(gca,strcat('Figures/Polar_map_theta_y_idx_',num2str((yy)),'_fi_',num2str(fi)),'jpeg')
-    exportgraphics(gca,strcat('Figures/Polar_map_theta_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
+%     exportgraphics(gca,strcat('Figures/Polar_map_theta_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.png'),'Resolution',300)
     exportgraphics(gca,strcat('Figures/Polar_map_theta_y_idx_',num2str((yy)),'_fi_',num2str(fi),'.jpeg'),'Resolution',300)
 
 
@@ -234,11 +234,21 @@ ylabel('$PDF$','interpreter','latex')
 legend([{'$y/\delta = 0.2$'},{'$y/\delta = 1.0$'},{'$y/\delta = 1.8$'}],'interpreter','latex','location','best')
 pbaspect([1.2 1 1])
 legend('Location','northeast','box','off')
+% For filter width 2
+ylim([0 2500])
+xlim([-0.001 0.02])
+xticks([0 0.01 0.02 0.03 0.04]/2)
+xticklabels( {'0','0.005', '0.01', '0.015', '0.02'} )
+% For filter width 4
+% ylim([0 2500])
+% xlim([-0.001 0.04])
+% xticks([0 0.01 0.02 0.03 0.04])
+% xticklabels( {'0','0.01', '0.02', '0.03', '0.04'} )
 set(gca,'linewidth',1.5)
 set(gca,'fontsize',14)
 % saveas(gca,strcat('Figures/PDF_DNS_filtered_trace_fi_',num2str(fi)),'png')
 % saveas(gca,strcat('Figures/PDF_DNS_filtered_trace_fi_',num2str(fi)),'jpeg')
-exportgraphics(gca,strcat('Figures/PDF_DNS_filtered_trace_fi_',num2str(fi),'.png'),'Resolution',300)
+% exportgraphics(gca,strcat('Figures/PDF_DNS_filtered_trace_fi_',num2str(fi),'.png'),'Resolution',300)
 exportgraphics(gca,strcat('Figures/PDF_DNS_filtered_trace_fi_',num2str(fi),'.jpeg'),'Resolution',300)
 
 

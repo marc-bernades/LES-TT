@@ -24,13 +24,13 @@ fi           = [1 2 4 6 8 10];
 % Select file where DNS datasets are stored
 source_path  = '/home/marc/Documents/Doctorat/Solver_and_postprocess/RHEA/Paper3/Post_process/';
 % High-pressure
-File_name{1} = '3d_high_pressure_turbulent_channel_flow_49800000.h5';
-File_name{2} = '3d_high_pressure_turbulent_channel_flow_52100000.h5';
-File_name{3} = '3d_high_pressure_turbulent_channel_flow_54200000.h5';
-File_name{4} = '3d_high_pressure_turbulent_channel_flow_56200000.h5';
-File_name{5} = '3d_high_pressure_turbulent_channel_flow_58900000.h5';
-File_name{6} = '3d_high_pressure_turbulent_channel_flow_67100000.h5';
-File_name{7} = '3d_high_pressure_turbulent_channel_flow_69100000.h5';
+% File_name{1} = '3d_high_pressure_turbulent_channel_flow_49800000.h5';
+% File_name{2} = '3d_high_pressure_turbulent_channel_flow_52100000.h5';
+% File_name{3} = '3d_high_pressure_turbulent_channel_flow_54200000.h5';
+% File_name{4} = '3d_high_pressure_turbulent_channel_flow_56200000.h5';
+% File_name{5} = '3d_high_pressure_turbulent_channel_flow_58900000.h5';
+% File_name{6} = '3d_high_pressure_turbulent_channel_flow_67100000.h5';
+File_name{1} = '3d_high_pressure_turbulent_channel_flow_69100000.h5';
 % Low-pressure 
 % File_name = 'restart_data_file_LP.h5'; % Laminar
 % File_name{1} = '3d_turbulent_channel_flow_56800000_LP_isoT.h5'; % Turbulent
@@ -443,7 +443,7 @@ end
 if bSave
 
     %% Save ensemble-average (XZ) into .csv file
-    name_file_out = strcat('HP_','fi_2_10_testing', Filter_type);
+    name_file_out = strcat('HP_','fi_2_10_single', Filter_type);
     DataOutput_LES(y(2,:,2), avg_u_xz, u_b, y_plus_bw,u_plus_bw, T_plus_bw, y_plus_tw,u_plus_tw, T_plus_tw, avg_R_favre_uu_bw, avg_R_favre_vv_bw, avg_R_favre_ww_bw, avg_R_favre_uu_tw, avg_R_favre_vv_tw, avg_R_favre_ww_tw, TKE_y, TKE_bw, TKE_tw, name_file_out, ...
         avg_u_xz_filt2xDelta, u_b_filt2xDelta, y_plus_bw_filt2xDelta, u_plus_bw_filt2xDelta, T_plus_bw_filt2xDelta, y_plus_tw_filt2xDelta, u_plus_tw_filt2xDelta, T_plus_tw_filt2xDelta, avg_R_favre_uu_bw_filt2xDelta, avg_R_favre_vv_bw_filt2xDelta, avg_R_favre_ww_bw_filt2xDelta, avg_R_favre_uu_tw_filt2xDelta, avg_R_favre_vv_tw_filt2xDelta, avg_R_favre_ww_tw_filt2xDelta, TKE_y_filt2xDelta, TKE_bw_filt2xDelta, TKE_tw_filt2xDelta,...
         avg_u_xz_filt4xDelta, u_b_filt4xDelta, y_plus_bw_filt4xDelta, u_plus_bw_filt4xDelta, T_plus_bw_filt4xDelta, y_plus_tw_filt4xDelta, u_plus_tw_filt4xDelta, T_plus_tw_filt4xDelta, avg_R_favre_uu_bw_filt4xDelta, avg_R_favre_vv_bw_filt4xDelta, avg_R_favre_ww_bw_filt4xDelta, avg_R_favre_uu_tw_filt4xDelta, avg_R_favre_vv_tw_filt4xDelta, avg_R_favre_ww_tw_filt4xDelta, TKE_y_filt4xDelta, TKE_bw_filt4xDelta, TKE_tw_filt4xDelta,...
@@ -452,7 +452,7 @@ if bSave
         avg_u_xz_filt10xDelta, u_b_filt10xDelta, y_plus_bw_filt10xDelta, u_plus_bw_filt10xDelta, T_plus_bw_filt10xDelta, y_plus_tw_filt10xDelta, u_plus_tw_filt10xDelta, T_plus_tw_filt10xDelta, avg_R_favre_uu_bw_filt10xDelta, avg_R_favre_vv_bw_filt10xDelta, avg_R_favre_ww_bw_filt10xDelta, avg_R_favre_uu_tw_filt10xDelta, avg_R_favre_vv_tw_filt10xDelta, avg_R_favre_ww_tw_filt10xDelta, TKE_y_filt10xDelta, TKE_bw_filt10xDelta, TKE_tw_filt10xDelta);
 
     %% Export all filtered fields in .mat file for postprocess
-    name_file_out_filt_dataset = strcat('Filtered_DNS_ensemble_average_fi_6_8');
+    name_file_out_filt_dataset = strcat("Filtered_DNS_ensemble_average_fi_single");
     DataOutput_EnsembleAverage_Filt;
 
 end

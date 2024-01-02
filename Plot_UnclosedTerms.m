@@ -163,7 +163,7 @@ pbaspect([1.8 1 1])
 legend('Location','northwest','box','off','NumColumns', 3)
 set(gca,'linewidth',1.5)
 set(gca,'fontsize',14)
-xlim([0 2]); ylim([6200 6500])
+xlim([0 2]); ylim([6300 6450])
 % axis tight
 % saveas(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta'),'png')
 % exportgraphics(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta', '.png'),'Resolution',300)

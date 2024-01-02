@@ -4,7 +4,7 @@ clear all; close all; clc
 %% Load filtered data (ensemble-average)
 % Name of the .mat file containing the filtered ensemble-average data for
 % filter widths to analyse
-name_file_out_filt_dataset = 'Filtered_DNS_ensemble_average';
+name_file_out_filt_dataset = 'Filtered_DNS_ensemble_average_69100000';
 % Load mat file
 Load_EnsembleAverage_Filt;
 
@@ -15,7 +15,7 @@ Substance         = 'N2';                      % Fluid selected substance
 HP_model          = 'HighPressure';            % Transport coefficients model: 'Constant', 'LowPressure', 'HighPressure'
 Fluid.R_specific  = 287.058;
 bPlot = false; % Plot boolean
-fi    = 8;     % Filter width chosen for the results
+fi    = 2;     % Filter width chosen for the results
 
 %% Obtain tau and bulk metrics from average DNS 
 % Select file

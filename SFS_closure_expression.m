@@ -97,6 +97,11 @@ alpha_2_closure_sim{2}     = rhov_visc_filt_filt - rhov_visc_LES_filt;
 alpha_2_closure_sim{3}     = rhow_visc_filt_filt - rhow_visc_LES_filt;
 
 v_SFS_2_sim = 40;
+alpha_2_closure_sim_u_avg = Spatial_avg_XZ_var(alpha_2_closure_sim{1},num_points_x,num_points_y,num_points_z, fi, idx);
+v_SFS_2_sim    = 2;
+% v_SFS_2_sim    = 1/mean((rhou_visc_filt_avg(idx:end-idx-1) - rhou_visc_LES_avg(idx:end-idx-1))./alpha_2_closure_sim_u_avg(idx:end-idx-1));
+
+
 alpha_2_closure_sim_avg{1}  = v_SFS_2_sim*Spatial_avg_XZ_var(alpha_2_closure_sim{1},num_points_x,num_points_y,num_points_z, fi, idx);
 alpha_2_closure_sim_avg{2}  = v_SFS_2_sim*Spatial_avg_XZ_var(alpha_2_closure_sim{2},num_points_x,num_points_y,num_points_z, fi, idx);
 alpha_2_closure_sim_avg{3}  = v_SFS_2_sim*Spatial_avg_XZ_var(alpha_2_closure_sim{3},num_points_x,num_points_y,num_points_z, fi, idx);
@@ -211,6 +216,7 @@ alpha_4_closure_FG_avg   = Spatial_avg_XZ_var(alpha_4_closure_FG,num_points_x,nu
 % Coefficients
 v_SFS    = -1/mean((alpha_4_filt_avg(idx:end-idx-1) - alpha_4_LES_avg(idx:end-idx-1))./alpha_4_closure_avg(idx:end-idx-1));
 v_SFS_FG = -1/mean((alpha_4_filt_avg(idx:end-idx-1) - alpha_4_LES_avg(idx:end-idx-1))./alpha_4_closure_FG_avg(idx:end-idx-1));
+v_SFS = -10;
 
 % Figure Pressure Method 1
 figure; hold on; box on
@@ -240,6 +246,7 @@ plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_LES_avg(idx:end-idx-1))*Norm{3},'line
 plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_filt_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','-','color',[0 0.4470 0.7410])
 plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_closure_FG_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','--','color','k')
 plot(y(2,idx:end-idx-1,2)/delta_h,(-1/(v_SFS_FG)*alpha_4_closure_FG_avg(idx:end-idx-1) + alpha_4_LES_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','-.','color',[0.4660 0.6740 0.1880])
+% plot(y(2,idx:end-idx-1,2)/delta_h,(-1/(v_SFS_FG)*alpha_4_closure_FG_avg(idx:end-idx-1) + alpha_4_LES_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','-.','color','red')
 
 xlabel('${y/\delta}$','interpreter','latex')
 ylabel(strcat('${\langle (\partial P / \partial t)^\ast \rangle}$', 'Decomposition'),'interpreter','latex')

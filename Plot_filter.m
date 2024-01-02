@@ -2,18 +2,19 @@
 
 %% Dataset needs to be loaded for the contourplots!
 % Expected to run DNS_filter.m ahead of this script otherwise
-% File_name{1} = '3d_high_pressure_turbulent_channel_flow_69100000.h5';
-% n_data       = 1;
-% File_name_complete = strcat(source_path,File_name{n_data});
-% 
-% Info      = h5info(File_name_complete);
-% Name_var  = {Info.Datasets.Name};
-% 
-% % Load variables
-% for ii = 1:length(Name_var)
-%     value = h5read(File_name_complete,strcat('/',Name_var{ii}) );
-%     assignin('base',Name_var{ii}, value)
-% end
+source_path  = '/home/marc/Documents/Doctorat/Solver_and_postprocess/RHEA/Paper3/Post_process/';
+File_name{1} = '3d_high_pressure_turbulent_channel_flow_69100000.h5';
+n_data       = 1;
+File_name_complete = strcat(source_path,File_name{n_data});
+
+Info      = h5info(File_name_complete);
+Name_var  = {Info.Datasets.Name};
+
+% Load variables
+for ii = 1:length(Name_var)
+    value = h5read(File_name_complete,strcat('/',Name_var{ii}) );
+    assignin('base',Name_var{ii}, value)
+end
 
 %% Load DataSet
 Filter_type = 'CDLF_Box';
@@ -38,27 +39,27 @@ L_z = 4/3*pi*delta_h; % Length in the z direction
 
 
 %% Plot total TKE
-figure; hold on; grid on; box on;
-plot(fi,TKE_tot_filt/TKE_tot_filt(1),'o--','linewidth',2,'markersize',5)
-xlabel('${{\overline{\Delta}}/\Delta}$','interpreter','latex')
-ylabel('${\langle || TKE || \rangle}$','interpreter','latex')
+% figure; hold on; grid on; box on;
+% plot(fi,TKE_tot_filt/TKE_tot_filt(1),'o--','linewidth',2,'markersize',5)
+% xlabel('${{\overline{\Delta}}/\Delta}$','interpreter','latex')
+% ylabel('${\langle || TKE || \rangle}$','interpreter','latex')
 
 %% Plot filter overshoots
-figure; hold on; grid on; box on;
-
-Delta = 4;
-
-FILT = TKE_filt4xDelta(:,64,:);
-DNS = TKE(:,64,:);
-FILT = FILT(:);
-DNS = DNS(:);
-plot(FILT(7412:7539),'-','linewidth',2)
-plot(DNS(7412:7539),'-','linewidth',2)
-xlabel('${N}$','interpreter','latex')
-ylabel('${\langle || TKE || \rangle}$','interpreter','latex')
-legend([{strcat('${{\overline{\Delta}}/\Delta}$',' = ', num2str(Delta))},{'DNS'}],'interpreter','latex','location','best')
-xlim([0 130])
-saveas(gca,strcat('Figures/Overshoot_', name_file_out, '_', num2str(Delta), 'xDelta'),'png')
+% figure; hold on; grid on; box on;
+% 
+% Delta = 4;
+% 
+% FILT = TKE_filt4xDelta(:,64,:);
+% DNS = TKE(:,64,:);
+% FILT = FILT(:);
+% DNS = DNS(:);
+% plot(FILT(7412:7539),'-','linewidth',2)
+% plot(DNS(7412:7539),'-','linewidth',2)
+% xlabel('${N}$','interpreter','latex')
+% ylabel('${\langle || TKE || \rangle}$','interpreter','latex')
+% legend([{strcat('${{\overline{\Delta}}/\Delta}$',' = ', num2str(Delta))},{'DNS'}],'interpreter','latex','location','best')
+% xlim([0 130])
+% saveas(gca,strcat('Figures/Overshoot_', name_file_out, '_', num2str(Delta), 'xDelta'),'png')
 % exportgraphics(gca,strcat('Figures/Overshoot_', name_file_out, '_', num2str(Delta), 'xDelta', '.jpeg'),'Resolution',300)
 % exportgraphics(gca,strcat('Figures/Overshoot_', name_file_out, '_', num2str(Delta), 'xDelta', '.png'),'Resolution',300)
 

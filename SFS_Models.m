@@ -114,7 +114,7 @@ Tau_kk_SFS{1}   = Tau_kk_u_SFS{1} + Tau_kk_v_SFS{1} + Tau_kk_w_SFS{1};
 
 
 %% Vreman model
-C_w          = 0.325; % Homogeneous isotropic turbulence Nicoud and Ducros 1999 for WALE model
+C_w          = 0.03; %0.325; % Homogeneous isotropic turbulence Nicoud and Ducros 1999 for WALE model
 S_u2_sum     = S_uu_filt_favre.^2 + S_uv_filt_favre.^2 + S_uw_filt_favre.^2;
 S_v2_sum     = S_uv_filt_favre.^2 + S_vv_filt_favre.^2 + S_vw_filt_favre.^2;
 S_w2_sum     = S_uw_filt_favre.^2 + S_vw_filt_favre.^2 + S_ww_filt_favre.^2;
@@ -639,9 +639,10 @@ PDF_Trace_SFS_Model(x,y,z,idx_filt,Tau_xx, Tau_xy, Tau_xz, Tau_yy, Tau_yz, Tau_z
 
 
 %% Eigen decomposition comparison
-SFS_model = {'Smagorinsky', 'Dynamic', 'AMD', 'WALE', 'Similarity'};
-for nModel = 1:length(Tau_xx_SFS) % Normalize by Vreman trace model
-    EigenDecomposition_SFS_Model(x,y,z,idx_filt, Tau_xx_SFS{nModel},Tau_xy_SFS{nModel},Tau_xz_SFS{nModel},Tau_yy_SFS{nModel},Tau_yz_SFS{nModel},Tau_zz_SFS{nModel},Tau_kk_u_SFS{2},Tau_kk_v_SFS{2},Tau_kk_w_SFS{2},Tau_kk_SFS{2},u_b,delta_h, fi, SFS_model{nModel});
+SFS_model   = {'Smagorinsky', 'Dynamic', 'AMD', 'WALE', 'Similarity'};
+Trace_model = 2; % Yoshizawa = 1, Vremann = 2
+for nModel = 1:length(SFS_model) % Normalize by Vreman trace model
+    EigenDecomposition_SFS_Model(x,y,z,idx_filt, Tau_xx_SFS{nModel},Tau_xy_SFS{nModel},Tau_xz_SFS{nModel},Tau_yy_SFS{nModel},Tau_yz_SFS{nModel},Tau_zz_SFS{nModel},Tau_kk_u_SFS{Trace_model},Tau_kk_v_SFS{Trace_model},Tau_kk_w_SFS{Trace_model},Tau_kk_SFS{Trace_model},u_b,delta_h, fi, SFS_model{nModel});
 end
 
 
@@ -726,7 +727,7 @@ xlim([0 2]); %ylim([5900 6500])
 % saveas(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta_Comparison'),'png')
 % saveas(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta_Comparison'),'epsc')
 exportgraphics(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta_Comparison', '.jpeg'),'Resolution',300)
-exportgraphics(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta_Comparison', '.png'),'Resolution',300)
+% exportgraphics(gca,strcat('Figures/Unclosed_EOS_', num2str(fi), 'xDelta_Comparison', '.png'),'Resolution',300)
 
 
 %% Correlation factors

@@ -78,13 +78,19 @@ for yy = 1:length(y_outer_vec)
     set(gca,'linewidth',1.5)
     set(gca,'fontsize',14)
     if yy == 1
-        xlim([-0.005 0.06])
-    elseif yy == 2
+        ylim([0 4000])
+        yticks([0 1000 2000 3000 4000])
         xlim([-0.001 0.02])
         xticklabels( {'0','0.005', '0.01', '0.015', '0.02'} )
 
+    elseif yy == 2
+        xlim([-0.0001 0.002])
+        xticks([0 0.001 0.002])
+        xticklabels( {'0','0.001','0.002'} )
+
     elseif yy == 3
-        xlim([-0.005 0.06])
+        xlim([-0.001 0.02])
+        xticklabels( {'0','0.005', '0.01', '0.015', '0.02'} )
     end
 %     saveas(gca,strcat('Figures/PDF_DNS_filtered_trace_y_idx_',num2str((yy)), '_fi_',num2str(fi), '_SFS_Comparison'),'png')
 %     exportgraphics(gca,strcat('Figures/PDF_DNS_filtered_trace_y_idx_',num2str((yy)), '_fi_',num2str(fi), '_SFS_Comparison', '.png'),'Resolution',300)
