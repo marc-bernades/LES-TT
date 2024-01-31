@@ -3,6 +3,7 @@
 delta_filt  = delta*fi; % Fi defined in unclosed_terms as governs the _filt fields
 Filter_type = 'CDLF_Box';
 HP_model    = 'HighPressure';
+bPlots_Decomposition = false;
 
 % Delta x, y and z based on CentralDerivative_d1_2ndOrder
 [~,dx,~] = CentralDerivative_d1_2ndOrder(x);
@@ -268,12 +269,13 @@ L_ww = rhoww_filt_favre_FG - rhow_filt_FG.*rhow_filt_FG./rho_filt_FG;
 % end
 
 % C_d inner product
-C_d = (M_uu.*L_uu + 2*M_uv.*L_uv + 2*M_uw.*L_uw + M_vv.*L_vv + 2*M_vw.*L_vw + M_ww.*L_ww)./(M_uu.*M_uu + 2*M_uv.*M_uv + 2*M_uw.*M_uw + M_vv.*M_vv + 2*M_vw.*M_vw + M_ww.*M_ww);
-C_d(C_d<0) = 0;
-
+C_d_num = (M_uu.*L_uu + 2*M_uv.*L_uv + 2*M_uw.*L_uw + M_vv.*L_vv + 2*M_vw.*L_vw + M_ww.*L_ww);
+C_d_den = (M_uu.*M_uu + 2*M_uv.*M_uv + 2*M_uw.*M_uw + M_vv.*M_vv + 2*M_vw.*M_vw + M_ww.*M_ww);
 
 % Ensemble average
-C_d_avg = Spatial_avg_XZ_var(C_d,num_points_x,num_points_y,num_points_z, fi, idx_filt);
+C_d_num_avg = Spatial_avg_XZ_var(C_d_num,num_points_x,num_points_y,num_points_z, fi, idx_filt);
+C_d_den_avg = Spatial_avg_XZ_var(C_d_den,num_points_x,num_points_y,num_points_z, fi, idx_filt);
+C_d_avg = C_d_num_avg./C_d_den_avg;
 C_d_avg(C_d_avg < 0) = 0;
 
 
@@ -345,7 +347,7 @@ end
 
 
 % C_delta = 1./(4./(fi.*dx.^2) + 4./(fi.*dy.^2) + 4./(fi.*dz.^2));
-C_delta = 0.3; % Impose C = 0.3 to give sufficient dissipation and use filte width
+C_delta = 0.3; % Impose C = 0.3 to give sufficient dissipation and use filter width
 ve_AMR  = ve_AMR.*(C_delta.*delta_filt).^2;
 
 
@@ -589,7 +591,7 @@ plot(y(2,idx_filt:end-(idx_filt),2)/delta_h, Tau_yy_SFS{3}(idx_filt,idx_filt:end
 plot(y(2,idx_filt:end-(idx_filt),2)/delta_h, Tau_yy_SFS{4}(idx_filt,idx_filt:end-(idx_filt),idx_filt),'linewidth',2, 'LineStyle','-','color',[0.4940 0.1840 0.5560])
 plot(y(2,idx_filt:end-(idx_filt),2)/delta_h, Tau_yy_SFS{5}(idx_filt,idx_filt:end-(idx_filt),idx_filt),'linewidth',2, 'LineStyle','-','color',[0.6350 0.0780 0.1840])
 xlim([0 2])
-legend('DNS filt','Smagorisnky','Dynami','AMD','WALE','Similarity')
+legend('DNS filt','Smagorisnky','Dynamic','AMD','WALE','Similarity')
 xlabel('${y/\delta}$','interpreter','latex')
 ylabel('${\tau_{yy}}$','interpreter','latex')
 pbaspect([1.8 1 1])
@@ -634,17 +636,19 @@ for yy = 1:length(y_outer_vec)
 end
 
 
-%% PDF Trace
-PDF_Trace_SFS_Model(x,y,z,idx_filt,Tau_xx, Tau_xy, Tau_xz, Tau_yy, Tau_yz, Tau_zz, Tau_kk_SFS,u_b,delta_h,fi)
+%% Decomposition plots
+if bPlots_Decomposition
+    %% PDF Trace
+    PDF_Trace_SFS_Model(x,y,z,idx_filt,Tau_xx, Tau_xy, Tau_xz, Tau_yy, Tau_yz, Tau_zz, Tau_kk_SFS,u_b,delta_h,fi)
 
 
-%% Eigen decomposition comparison
-SFS_model   = {'Smagorinsky', 'Dynamic', 'AMD', 'WALE', 'Similarity'};
-Trace_model = 2; % Yoshizawa = 1, Vremann = 2
-for nModel = 1:length(SFS_model) % Normalize by Vreman trace model
-    EigenDecomposition_SFS_Model(x,y,z,idx_filt, Tau_xx_SFS{nModel},Tau_xy_SFS{nModel},Tau_xz_SFS{nModel},Tau_yy_SFS{nModel},Tau_yz_SFS{nModel},Tau_zz_SFS{nModel},Tau_kk_u_SFS{Trace_model},Tau_kk_v_SFS{Trace_model},Tau_kk_w_SFS{Trace_model},Tau_kk_SFS{Trace_model},u_b,delta_h, fi, SFS_model{nModel});
+    %% Eigen decomposition comparison
+    SFS_model   = {'Smagorinsky', 'Dynamic', 'AMD', 'WALE', 'Similarity'};
+    Trace_model = 2; % Yoshizawa = 1, Vremann = 2
+    for nModel = 1:length(SFS_model) % Normalize by Vreman trace model
+        EigenDecomposition_SFS_Model(x,y,z,idx_filt, Tau_xx_SFS{nModel},Tau_xy_SFS{nModel},Tau_xz_SFS{nModel},Tau_yy_SFS{nModel},Tau_yz_SFS{nModel},Tau_zz_SFS{nModel},Tau_kk_u_SFS{Trace_model},Tau_kk_v_SFS{Trace_model},Tau_kk_w_SFS{Trace_model},Tau_kk_SFS{Trace_model},u_b,delta_h, fi, SFS_model{nModel});
+    end
 end
-
 
 
 %% Equation of State Model

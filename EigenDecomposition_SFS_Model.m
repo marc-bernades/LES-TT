@@ -1,7 +1,7 @@
 function EigenDecomposition_SFS_Model(x,y,z,idx_filt, Tau_xx,Tau_xy,Tau_xz,Tau_yy,Tau_yz,Tau_zz,Tau_kk_u_SFS, Tau_kk_v_SFS, Tau_kk_w_SFS,Tau_kk_SFS,u_b,delta_h, fi, SFS_model)
 
 %% Eigen Decomposition
-close all; clc
+% close all; clc
 
 % Initialization
 num_points_x = length(x(:,1,1));

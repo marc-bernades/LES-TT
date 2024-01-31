@@ -222,7 +222,7 @@ v_SFS = -10;
 figure; hold on; box on
 plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_LES_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','-','color',[0.4660 0.6740 0.1880])
 plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_filt_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','-','color',[0 0.4470 0.7410])
-plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_closure_FG_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','--','color','k')
+plot(y(2,idx:end-idx-1,2)/delta_h,(alpha_4_closure_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','--','color','k')
 plot(y(2,idx:end-idx-1,2)/delta_h,(-1/(v_SFS)*alpha_4_closure_avg(idx:end-idx-1) + alpha_4_LES_avg(idx:end-idx-1))*Norm{3},'linewidth',2, 'LineStyle','-.','color',[0.4660 0.6740 0.1880])
 
 xlabel('${y/\delta}$','interpreter','latex')

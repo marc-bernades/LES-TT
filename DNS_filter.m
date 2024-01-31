@@ -178,7 +178,7 @@ for n_data = 1:n_datasets
             + (dv_x./dx).*Tau.Tau_yx + (dv_y./dy).*Tau.Tau_yy + (dv_z./dz).*Tau.Tau_yz  + ...
             + (dw_x./dx).*Tau.Tau_zx + (dw_y./dy).*Tau.Tau_zy + (dw_z./dz).*Tau.Tau_zz;
         alpha_5_unfilt = Alpha_p./(c_v.*Beta_T).*(1./rho.*(Tau_dU - q_div));
-        alpha_5_filt(:,:,:,n_data,n_filter)   = FilterFields(alpha_5_unfilt,delta_filt,delta,fi(nn),x,y,z,dx,dy,dz,Filter_type);
+        alpha_5_filt(:,:,:,n_data,n_filter)    = FilterFields(alpha_5_unfilt,delta_filt,delta,fi(nn),x,y,z,dx,dy,dz,Filter_type);
 
 
         % Calculate bulk values, cell size and deltas
